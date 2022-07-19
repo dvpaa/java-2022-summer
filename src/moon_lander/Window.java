@@ -51,8 +51,5 @@ public class Window extends JFrame{
                 new Window();
             }
         });
-
-        System.out.println("ㅎㅇㅎㅇ");
-        System.out.println("ㅎㅇ");
     }
 }
