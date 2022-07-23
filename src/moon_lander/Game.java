@@ -163,13 +163,10 @@ public class Game {
         
         playerRocket.Draw(g2d);
 
-<<<<<<< HEAD
         g2d.drawString("Life: " + playerRocket.life, 5, 30);
-=======
         items.Draw(g2d);
 
         g2d.drawString("Life: 1", 5, 30);
->>>>>>> 4b70783f77539b0737c955cc2fc5d75559d60f5c
 
         g2d.drawString("Time limit: " + (time - gameTime / Framework.secInNanosec), 5, 45);
     }
