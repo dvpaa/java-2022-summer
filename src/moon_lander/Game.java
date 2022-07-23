@@ -124,6 +124,10 @@ public class Game {
                 
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
+
+        if(gameTime / Framework.secInNanosec > 5){
+            Framework.gameState = Framework.GameState.GAMEOVER;
+        }
     }
     
     /**
@@ -165,8 +169,14 @@ public class Game {
         else
         {
             g2d.setColor(Color.red);
-            g2d.drawString("You have crashed the rocket!", Framework.frameWidth / 2 - 95, Framework.frameHeight / 3);
             g2d.drawImage(redBorderImg, 0, 0, Framework.frameWidth, Framework.frameHeight, null);
+            if(playerRocket.crashed){
+                g2d.drawString("You have crashed the rocket!", Framework.frameWidth / 2 - 95, Framework.frameHeight / 3);
+            }
+            else{
+                g2d.drawString("TIME OVER!", Framework.frameWidth / 2 - 50, Framework.frameHeight / 3);
+            }
+
         }
     }
 }
