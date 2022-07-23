@@ -44,6 +44,8 @@ public class Game {
     private BufferedImage redBorderImg;
 
     private final long timeLimit = 5;
+
+    private long time = timeLimit;
     
 
     public Game()
@@ -134,7 +136,15 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if(gameTime / Framework.secInNanosec >= timeLimit){
+        if(gameTime / Framework.secInNanosec >= time){
+            if(playerRocket.life > 0){
+                playerRocket.life -= 1;
+                time += timeLimit;
+            }
+
+        }
+
+        if(playerRocket.life == 0){
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
     }
@@ -153,11 +163,15 @@ public class Game {
         
         playerRocket.Draw(g2d);
 
+<<<<<<< HEAD
+        g2d.drawString("Life: " + playerRocket.life, 5, 30);
+=======
         items.Draw(g2d);
 
         g2d.drawString("Life: 1", 5, 30);
+>>>>>>> 4b70783f77539b0737c955cc2fc5d75559d60f5c
 
-        g2d.drawString("Time limit: " + (timeLimit - gameTime / Framework.secInNanosec), 5, 45);
+        g2d.drawString("Time limit: " + (time - gameTime / Framework.secInNanosec), 5, 45);
     }
 
 
@@ -187,7 +201,7 @@ public class Game {
                 g2d.drawString("You have crashed the rocket!", Framework.frameWidth / 2 - 95, Framework.frameHeight / 3);
             }
             else{
-                g2d.drawString("TIME OVER!", Framework.frameWidth / 2 - 50, Framework.frameHeight / 3);
+                g2d.drawString("GAME OVER!", Framework.frameWidth / 2 - 50, Framework.frameHeight / 3);
             }
 
         }

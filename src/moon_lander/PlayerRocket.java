@@ -65,6 +65,8 @@ public class PlayerRocket {
      * How fast and to which direction rocket is moving on y coordinate?
      */
     public int speedY;
+
+    public int life;
             
     /**
      * Image of the rocket in air.
@@ -113,6 +115,8 @@ public class PlayerRocket {
         speedStopping = 1;
         
         topLandingSpeed = 5;
+
+        life = 3;
     }
     
     private void LoadContent()
