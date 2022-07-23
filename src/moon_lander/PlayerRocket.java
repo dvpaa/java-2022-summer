@@ -66,7 +66,7 @@ public class PlayerRocket {
      */
     public int speedY;
 
-    public int life;
+
             
     /**
      * Image of the rocket in air.
@@ -116,7 +116,6 @@ public class PlayerRocket {
         
         topLandingSpeed = 5;
 
-        life = 3;
     }
     
     private void LoadContent()

@@ -43,9 +43,13 @@ public class Game {
      */
     private BufferedImage redBorderImg;
 
-    private final long timeLimit = 5;
+    private final int LIFE_NUM = 3;
 
-    private long time = timeLimit;
+    private int life = LIFE_NUM;
+
+    private final long TIME_LIMIT = 5;
+
+    private long time = TIME_LIMIT;
     
 
     public Game()
@@ -103,6 +107,8 @@ public class Game {
     {
         playerRocket.ResetPlayer();
         items.ResetItems();
+        life = LIFE_NUM;
+        time = TIME_LIMIT;
     }
     
     
@@ -137,14 +143,14 @@ public class Game {
         }
 
         if(gameTime / Framework.secInNanosec >= time){
-            if(playerRocket.life > 0){
-                playerRocket.life -= 1;
-                time += timeLimit;
+            if(life > 0){
+                life -= 1;
+                time += TIME_LIMIT;
             }
 
         }
 
-        if(playerRocket.life == 0){
+        if(life == 0){
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
     }
@@ -165,7 +171,7 @@ public class Game {
 
         items.Draw(g2d);
 
-        g2d.drawString("Life: " + playerRocket.life, 5, 30);
+        g2d.drawString("Life: " + life, 5, 30);
 
         g2d.drawString("Time limit: " + (time - gameTime / Framework.secInNanosec), 5, 45);
     }
