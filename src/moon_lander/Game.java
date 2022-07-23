@@ -22,6 +22,11 @@ public class Game {
      * The space rocket with which player will have to land.
      */
     private PlayerRocket playerRocket;
+
+    /**
+     * Items which player will have to get.
+     */
+    private Items items;
     
     /**
      * Landing area on which rocket will have to land.
@@ -67,6 +72,7 @@ public class Game {
     {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
+        items = new Items();
     }
     
     /**
@@ -94,6 +100,7 @@ public class Game {
     public void RestartGame()
     {
         playerRocket.ResetPlayer();
+        items.ResetItems();
     }
     
     
@@ -145,6 +152,8 @@ public class Game {
         landingArea.Draw(g2d);
         
         playerRocket.Draw(g2d);
+
+        items.Draw(g2d);
 
         g2d.drawString("Life: 1", 5, 30);
 
