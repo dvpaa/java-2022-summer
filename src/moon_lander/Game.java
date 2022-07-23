@@ -37,6 +37,8 @@ public class Game {
      * Red border of the frame. It is used when player crash the rocket.
      */
     private BufferedImage redBorderImg;
+
+    private final long timeLimit = 5;
     
 
     public Game()
@@ -125,7 +127,7 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if(gameTime / Framework.secInNanosec > 5){
+        if(gameTime / Framework.secInNanosec >= timeLimit){
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
     }
@@ -136,7 +138,7 @@ public class Game {
      * @param g2d Graphics2D
      * @param mousePosition current mouse position.
      */
-    public void Draw(Graphics2D g2d, Point mousePosition)
+    public void Draw(Graphics2D g2d, Point mousePosition, long gameTime)
     {
         g2d.drawImage(backgroundImg, 0, 0, Framework.frameWidth, Framework.frameHeight, null);
         
@@ -145,9 +147,11 @@ public class Game {
         playerRocket.Draw(g2d);
 
         g2d.drawString("Life: 1", 5, 30);
+
+        g2d.drawString("Time limit: " + (timeLimit - gameTime / Framework.secInNanosec), 5, 45);
     }
-    
-    
+
+
     /**
      * Draw the game over screen.
      * 
@@ -157,7 +161,7 @@ public class Game {
      */
     public void DrawGameOver(Graphics2D g2d, Point mousePosition, long gameTime)
     {
-        Draw(g2d, mousePosition);
+        Draw(g2d, mousePosition, gameTime);
         
         g2d.drawString("Press space or enter to restart.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 70);
         

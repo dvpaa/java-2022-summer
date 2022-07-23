@@ -210,7 +210,7 @@ public class Framework extends Canvas {
         switch (gameState)
         {
             case PLAYING:
-                game.Draw(g2d, mousePosition());
+                game.Draw(g2d, mousePosition(), gameTime);
             break;
             case GAMEOVER:
                 game.DrawGameOver(g2d, mousePosition(), gameTime);
