@@ -139,6 +139,8 @@ public class Game {
         landingArea.Draw(g2d);
         
         playerRocket.Draw(g2d);
+
+        g2d.drawString("Life: 1", 5, 30);
     }
     
     
