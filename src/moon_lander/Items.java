@@ -180,8 +180,8 @@ public class Items {
     {
         flagGotten = false;
 
-        heartGotten = new boolean[3];
-        watchGotten = new boolean[3];
+        heartGotten = new boolean[ITEM_NUM];
+        watchGotten = new boolean[ITEM_NUM];
 
         Arrays.fill(heartGotten, false);
         Arrays.fill(watchGotten, false);
