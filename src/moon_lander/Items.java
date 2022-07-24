@@ -30,6 +30,11 @@ public class Items {
     private final int ITEM_NUM = 3;
 
     /**
+     * number of meteors.
+     */
+    private final int METEOR_NUM = ITEM_NUM * 2;
+
+    /**
      * X coordinate of the flag.
      */
     public int flagX;
@@ -60,6 +65,16 @@ public class Items {
     public int[] watchY;
 
     /**
+     * X coordinates of the meteor.
+     */
+    public int[] meteorX;
+
+    /**
+     * Y coordinates of the meteor.
+     */
+    public int[] meteorY;
+
+    /**
      * Image of the flag in air.
      */
     private BufferedImage flagImg;
@@ -73,6 +88,11 @@ public class Items {
      * Image of the watch in air.
      */
     private BufferedImage[] watchImg;
+
+    /**
+     * Images of the meteor in air.
+     */
+    private BufferedImage[] meteorImg;
 
     /**
      * Width of flag.
@@ -105,6 +125,16 @@ public class Items {
     public int watchImgHeight;
 
     /**
+     * Width of meteor.
+     */
+    public int meteorImgWidth;
+
+    /**
+     * Height of meteor.
+     */
+    public int meteorImgHeight;
+
+    /**
      * Is flag gotten?
      */
     public boolean flagGotten;
@@ -118,6 +148,11 @@ public class Items {
      * Is watch gotten?
      */
     public boolean[] watchGotten;
+
+    /**
+     * Is item gotten?
+     */
+    public boolean[] meteorGotten;
 
 
     public Items()
@@ -138,6 +173,9 @@ public class Items {
         watchX = new int[ITEM_NUM];
         watchY = new int[ITEM_NUM];
 
+        meteorX = new int[METEOR_NUM];
+        meteorY = new int[METEOR_NUM];
+
         ResetItems();
     }
 
@@ -147,6 +185,8 @@ public class Items {
         heartImg = new BufferedImage[ITEM_NUM];
 
         watchImg = new BufferedImage[ITEM_NUM];
+
+        meteorImg = new BufferedImage[METEOR_NUM];
 
 
         try
@@ -165,11 +205,21 @@ public class Items {
                 URL watchIgmUrl = this.getClass().getResource("/resources/images/item_stopwatch.png");
                 watchImg[i] = ImageIO.read(watchIgmUrl);
             }
+
+            for (int i=0; i<METEOR_NUM; i++)
+            {
+                URL meteorImgUrl = this.getClass().getResource("/resources/images/meteor_40.png");
+                meteorImg[i] = ImageIO.read(meteorImgUrl);
+            }
+
             heartImgWidth = heartImg[0].getWidth();
             heartImgHeight = heartImg[0].getHeight();
 
             watchImgWidth = watchImg[0].getWidth();
             watchImgHeight = watchImg[0].getHeight();
+
+            meteorImgWidth = meteorImg[0].getWidth();
+            meteorImgHeight = meteorImg[0].getHeight();
         }
         catch (IOException ex) {
             Logger.getLogger(Items.class.getName()).log(Level.SEVERE, null, ex);
@@ -182,9 +232,11 @@ public class Items {
 
         heartGotten = new boolean[ITEM_NUM];
         watchGotten = new boolean[ITEM_NUM];
+        meteorGotten = new boolean[METEOR_NUM];
 
         Arrays.fill(heartGotten, false);
         Arrays.fill(watchGotten, false);
+        Arrays.fill(meteorGotten, false);
 
         flagX = random.nextInt(Framework.frameWidth - flagImgWidth);
         flagY = 15 + random.nextInt(Framework.frameHeight - flagImgHeight - 60);
@@ -196,6 +248,12 @@ public class Items {
 
             watchX[i] = random.nextInt(Framework.frameWidth - watchImgWidth);
             watchY[i] = 15 + random.nextInt(Framework.frameHeight - watchImgHeight - 60);
+        }
+
+        for (int i=0; i<METEOR_NUM; i++)
+        {
+            meteorX[i] = random.nextInt(Framework.frameWidth - meteorImgWidth);
+            meteorY[i] = 15 + random.nextInt(Framework.frameHeight - meteorImgHeight - 60);
         }
     }
 
@@ -219,6 +277,15 @@ public class Items {
             if (!watchGotten[i])
             {
                 g2d.drawImage(watchImg[i], watchX[i], watchY[i], null);
+            }
+        }
+
+        for (int i=0; i<METEOR_NUM; i++)
+        {
+            // If the meteor item is gotten?
+            if (!meteorGotten[i])
+            {
+                g2d.drawImage(meteorImg[i], meteorX[i], meteorY[i], null);
             }
         }
     }

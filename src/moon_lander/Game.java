@@ -31,7 +31,7 @@ public class Game {
     /**
      * Meteors which player will have to avoid.
      */
-    private Meteors meteors;
+//    private Meteors meteors;
     
     /**
      * Landing area on which rocket will have to land.
@@ -84,7 +84,7 @@ public class Game {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
         items = new Items();
-        meteors = new Meteors();
+//        meteors = new Meteors();
     }
     
     /**
@@ -113,7 +113,7 @@ public class Game {
     {
         playerRocket.ResetPlayer();
         items.ResetItems();
-        meteors.ResetMeteors();
+//        meteors.ResetMeteors();
         life = LIFE_NUM;
         time = TIME_LIMIT;
     }
@@ -149,6 +149,8 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
+
+
         if(gameTime / Framework.secInNanosec >= time){
             if(life > 0){
                 life -= 1;
@@ -178,7 +180,7 @@ public class Game {
 
         items.Draw(g2d);
 
-        meteors.Draw(g2d);
+//        meteors.Draw(g2d);
 
         g2d.drawString("Life: " + life, 5, 30);
 

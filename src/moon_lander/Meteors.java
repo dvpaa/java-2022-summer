@@ -23,55 +23,22 @@ public class Meteors {
      */
     private Random random;
 
-    /**
-     * number of meteors.
-     */
-    private final int METEOR_NUM = 6;
-
-    /**
-     * X coordinates of the meteor.
-     */
-    public int[] meteorItemX;
-
-    /**
-     * Y coordinates of the meteor.
-     */
-    public int[] meteorItemY;
 
     /**
      * Images of the meteor in air.
      */
-    private BufferedImage meteorImg;
+    private BufferedImage meteor;
 
-    /**
-     * Images of the meteor item in air.
-     */
-    private BufferedImage[] meteorItemImg;
 
     /**
      * Width of meteor.
      */
-    public int meteorImgWidth;
+    public int meteorWidth;
 
     /**
      * Height of meteor.
      */
-    public int meteorImgHeight;
-
-    /**
-     * Width of meteor item.
-     */
-    public int meteorItemImgWidth;
-
-    /**
-     * Height of meteor.
-     */
-    public int meteorItemImgHeight;
-
-    /**
-     * Is item gotten?
-     */
-    public boolean[] itemGotten;
+    public int meteorHeight;
 
     /**
      * Accelerating speed of the meteor.
@@ -103,10 +70,6 @@ public class Meteors {
 
         speedAccelerating = 10;
 
-        meteorItemX = new int[METEOR_NUM];
-        meteorItemY = new int[METEOR_NUM];
-
-
         ResetMeteors();
     }
 
@@ -114,52 +77,31 @@ public class Meteors {
     private void LoadContent()
     {
 
-        meteorItemImg = new BufferedImage[METEOR_NUM];
-
-
-        try
-        {
+//        try
+//        {
 //            URL meteorImgUrl = this.getClass().getResource("resources/images/meteor_100.png");
 //            meteorImg = ImageIO.read(meteorImgUrl);
 //
 //            meteorImgWidth = meteorImg.getWidth();
 //            meteorImgHeight = meteorImg.getHeight();
-
-            for (int i=0; i<METEOR_NUM; i++)
-            {
-                URL itemImgUrl = this.getClass().getResource("/resources/images/meteor_40.png");
-                meteorItemImg[i] = ImageIO.read(itemImgUrl);
-            }
-            meteorItemImgWidth = meteorItemImg[0].getWidth();
-            meteorItemImgHeight = meteorItemImg[0].getHeight();
-        }
-        catch (IOException ex) {
-            Logger.getLogger(Meteors.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//
+//
+//        }
+//        catch (IOException ex) {
+//            Logger.getLogger(Meteors.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public void ResetMeteors()
     {
-        itemGotten = new boolean[METEOR_NUM];
-        Arrays.fill(itemGotten, false);
 
-        for (int i=0; i<METEOR_NUM; i++)
-        {
-            meteorItemX[i] = random.nextInt(Framework.frameWidth - meteorItemImgWidth);
-            meteorItemY[i] = 15 + random.nextInt(Framework.frameHeight - meteorItemImgHeight - 60);
-        }
+
+
     }
 
     public void Draw(Graphics2D g2d)
     {
-        for (int i=0; i<METEOR_NUM; i++)
-        {
-            // If the meteor item is gotten?
-            if (!itemGotten[i])
-            {
-                g2d.drawImage(meteorItemImg[i], meteorItemX [i], meteorItemY[i], null);
-            }
-        }
+
     }
 }
 
