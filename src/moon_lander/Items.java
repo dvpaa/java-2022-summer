@@ -27,7 +27,7 @@ public class Items {
     /**
      * number of items.
      */
-    private final int itemNum = 3;
+    private final int ITEM_NUM = 3;
 
     /**
      * X coordinate of the flag.
@@ -132,11 +132,11 @@ public class Items {
     {
         random = new Random();
 
-        heartX = new int[itemNum];
-        heartY = new int[itemNum];
+        heartX = new int[ITEM_NUM];
+        heartY = new int[ITEM_NUM];
 
-        watchX = new int[itemNum];
-        watchY = new int[itemNum];
+        watchX = new int[ITEM_NUM];
+        watchY = new int[ITEM_NUM];
 
         ResetItems();
     }
@@ -144,9 +144,9 @@ public class Items {
 
     private void LoadContent()
     {
-        heartImg = new BufferedImage[itemNum];
+        heartImg = new BufferedImage[ITEM_NUM];
 
-        watchImg = new BufferedImage[itemNum];
+        watchImg = new BufferedImage[ITEM_NUM];
 
 
         try
@@ -157,7 +157,7 @@ public class Items {
             flagImgWidth = flagImg.getWidth();
             flagImgHeight = flagImg.getHeight();
 
-            for (int i=0; i<itemNum; i++)
+            for (int i=0; i<ITEM_NUM; i++)
             {
                 URL heartImgUrl = this.getClass().getResource("/resources/images/item_heart.png");
                 heartImg[i] = ImageIO.read(heartImgUrl);
@@ -189,7 +189,7 @@ public class Items {
         flagX = random.nextInt(Framework.frameWidth - flagImgWidth);
         flagY = 15 + random.nextInt(Framework.frameHeight - flagImgHeight - 60);
 
-        for (int i=0; i<itemNum; i++)
+        for (int i=0; i<ITEM_NUM; i++)
         {
             heartX[i] = random.nextInt(Framework.frameWidth - heartImgWidth);
             heartY[i] = 15 + random.nextInt(Framework.frameHeight - heartImgHeight - 60);
@@ -207,7 +207,7 @@ public class Items {
             g2d.drawImage(flagImg, flagX, flagY, null);
         }
 
-        for (int i=0; i<itemNum; i++)
+        for (int i=0; i<ITEM_NUM; i++)
         {
             // If the heart is gotten.
             if (!heartGotten[i])
