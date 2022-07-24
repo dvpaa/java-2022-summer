@@ -27,6 +27,11 @@ public class Game {
      * Items which player will have to get.
      */
     private Items items;
+
+    /**
+     * Meteors which player will have to avoid.
+     */
+    private Meteors meteors;
     
     /**
      * Landing area on which rocket will have to land.
@@ -79,6 +84,7 @@ public class Game {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
         items = new Items();
+        meteors = new Meteors();
     }
     
     /**
@@ -107,6 +113,7 @@ public class Game {
     {
         playerRocket.ResetPlayer();
         items.ResetItems();
+        meteors.ResetMeteors();
         life = LIFE_NUM;
         time = TIME_LIMIT;
     }
@@ -170,6 +177,8 @@ public class Game {
         playerRocket.Draw(g2d);
 
         items.Draw(g2d);
+
+        meteors.Draw(g2d);
 
         g2d.drawString("Life: " + life, 5, 30);
 
