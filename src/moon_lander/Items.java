@@ -1,6 +1,7 @@
 package moon_lander;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +28,7 @@ public class Items {
     /**
      * number of items.
      */
-    private final int ITEM_NUM = 3;
+    private final int ITEM_NUM = 2;
 
     /**
      * number of meteors.
@@ -154,6 +155,8 @@ public class Items {
      */
     public boolean[] meteorGotten;
 
+    private final int standardPos = 100;
+
 
     public Items()
     {
@@ -239,23 +242,24 @@ public class Items {
         Arrays.fill(meteorGotten, false);
 
         flagX = random.nextInt(Framework.frameWidth - flagImgWidth);
-        flagY = 15 + random.nextInt(Framework.frameHeight - flagImgHeight - 60);
+        flagY = 15 + random.nextInt(Framework.frameHeight - flagImgHeight - standardPos);
 
         for (int i=0; i<ITEM_NUM; i++)
         {
             heartX[i] = random.nextInt(Framework.frameWidth - heartImgWidth);
-            heartY[i] = 15 + random.nextInt(Framework.frameHeight - heartImgHeight - 60);
+            heartY[i] = 15 + random.nextInt(Framework.frameHeight - heartImgHeight - standardPos);
 
             watchX[i] = random.nextInt(Framework.frameWidth - watchImgWidth);
-            watchY[i] = 15 + random.nextInt(Framework.frameHeight - watchImgHeight - 60);
+            watchY[i] = 15 + random.nextInt(Framework.frameHeight - watchImgHeight - standardPos);
         }
 
         for (int i=0; i<METEOR_NUM; i++)
         {
             meteorX[i] = random.nextInt(Framework.frameWidth - meteorImgWidth);
-            meteorY[i] = 15 + random.nextInt(Framework.frameHeight - meteorImgHeight - 60);
+            meteorY[i] = 15 + random.nextInt(Framework.frameHeight - meteorImgHeight - standardPos);
         }
     }
+
 
     public void Draw(Graphics2D g2d)
     {
@@ -284,9 +288,20 @@ public class Items {
         {
             // If the meteor item is gotten?
             if (!meteorGotten[i])
+
             {
                 g2d.drawImage(meteorImg[i], meteorX[i], meteorY[i], null);
             }
         }
+    }
+
+    public int getITEM_NUM()
+    {
+        return ITEM_NUM;
+    }
+
+    public int getMETEOR_NUM()
+    {
+        return METEOR_NUM;
     }
 }

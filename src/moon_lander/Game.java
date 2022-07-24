@@ -149,6 +149,39 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
+        if (((items.flagX - (items.flagImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.flagX + (items.flagImgWidth / 2))) &&
+                ((items.flagY - (items.flagImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.flagY + (items.flagImgHeight / 2))))
+        {
+            items.flagGotten = true;
+        }
+
+        for (int i=0; i<items.getMETEOR_NUM(); i++)
+        {
+            if (((items.meteorX[i] - (items.meteorImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.meteorX[i] + (items.meteorImgWidth / 2))) &&
+                    ((items.meteorY[i] - (items.meteorImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.meteorY[i] + (items.meteorImgHeight / 2))))
+            {
+                items.meteorGotten[i] = true;
+            }
+        }
+
+        for (int i=0; i<items.getITEM_NUM(); i++)
+        {
+            if (((items.heartX[i] - (items.heartImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.heartX[i] + (items.heartImgWidth / 2))) &&
+                    ((items.heartY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.heartY[i] + (items.heartImgHeight / 2))))
+            {
+                items.heartGotten[i] = true;
+            }
+
+            if (((items.watchX[i] - (items.watchImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.watchX[i] + (items.watchImgWidth / 2))) &&
+                    ((items.watchY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.watchY[i] + (items.watchImgHeight / 2))))
+            {
+                items.watchGotten[i] = true;
+            }
+        }
+
+
+
+
 
 
         if(gameTime / Framework.secInNanosec >= time){
