@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import java.util.Arrays;
 
 /**
- * ItemS which player will have to get
+ * Items which player will have to get
  *
  * @author https://github.com/dvpaa/Java-2022-Summer
  */
@@ -201,7 +201,7 @@ public class Items {
 
     public void Draw(Graphics2D g2d)
     {
-        // If the flag is gotten.
+        // If the flag is gotten?
         if (!flagGotten)
         {
             g2d.drawImage(flagImg, flagX, flagY, null);
@@ -209,13 +209,13 @@ public class Items {
 
         for (int i=0; i<ITEM_NUM; i++)
         {
-            // If the heart is gotten.
+            // If the heart is gotten?
             if (!heartGotten[i])
             {
                 g2d.drawImage(heartImg[i], heartX[i], heartY[i], null);
             }
 
-            // If the watch is gotten.
+            // If the watch is gotten?
             if (!watchGotten[i])
             {
                 g2d.drawImage(watchImg[i], watchX[i], watchY[i], null);
