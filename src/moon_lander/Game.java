@@ -27,11 +27,6 @@ public class Game {
      * Items which player will have to get.
      */
     private Items items;
-
-    /**
-     * Meteors which player will have to avoid.
-     */
-//    private Meteors meteors;
     
     /**
      * Landing area on which rocket will have to land.
@@ -84,7 +79,6 @@ public class Game {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
         items = new Items();
-//        meteors = new Meteors();
     }
     
     /**
@@ -113,6 +107,7 @@ public class Game {
     {
         playerRocket.ResetPlayer();
         items.ResetItems();
+        landingArea.ResetLandingArea();
 //        meteors.ResetMeteors();
         life = LIFE_NUM;
         time = TIME_LIMIT;
@@ -152,30 +147,37 @@ public class Game {
         if (((items.flagX - (items.flagImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.flagX + (items.flagImgWidth / 2))) &&
                 ((items.flagY - (items.flagImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.flagY + (items.flagImgHeight / 2))))
         {
-            items.flagGotten = true;
+            if (!items.flagGotten)
+            {
+                items.flagGotten = true;
+                landingArea.flag = true;
+            }
+
         }
 
-//        for (int i=0; i<items.getMETEOR_NUM(); i++)
-//        {
-//            if (((items.meteorX[i] - (items.meteorImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.meteorX[i] + (items.meteorImgWidth / 2))) &&
-//                    ((items.meteorY[i] - (items.meteorImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.meteorY[i] + (items.meteorImgHeight / 2))))
-//            {
-//                items.meteorGotten[i] = true;
-//            }
-//        }
 
-        for (int i=0; i<items.getITEM_NUM(); i++)
+
+        for (int i=0; i<Items.ITEM_NUM; i++)
         {
             if (((items.heartX[i] - (items.heartImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.heartX[i] + (items.heartImgWidth / 2))) &&
                     ((items.heartY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.heartY[i] + (items.heartImgHeight / 2))))
             {
-                items.heartGotten[i] = true;
+                if (!items.heartGotten[i])
+                {
+                    items.heartGotten[i] = true;
+                    life += 1;
+                }
+
             }
 
             if (((items.watchX[i] - (items.watchImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.watchX[i] + (items.watchImgWidth / 2))) &&
                     ((items.watchY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.watchY[i] + (items.watchImgHeight / 2))))
             {
-                items.watchGotten[i] = true;
+                if (!items.watchGotten[i])
+                {
+                    items.watchGotten[i] = true;
+                    time += 5;
+                }
             }
         }
 
