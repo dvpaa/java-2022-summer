@@ -47,6 +47,7 @@ public class PlayerRocket {
      * Accelerating speed of the rocket.
      */
     private int speedAccelerating;
+
     /**
      * Stopping/Falling speed of the rocket. Falling speed because, the gravity pulls the rocket down to the moon.
      */

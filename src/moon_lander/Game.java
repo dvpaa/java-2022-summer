@@ -32,7 +32,12 @@ public class Game {
      * Landing area on which rocket will have to land.
      */
     private LandingArea landingArea;
-    
+
+    /**
+     * Meteor which player will have to avoid.
+     */
+    private Meteor meteor;
+
     /**
      * Game background image.
      */
@@ -79,6 +84,7 @@ public class Game {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
         items = new Items();
+        meteor = new Meteor();
     }
     
     /**
@@ -108,7 +114,8 @@ public class Game {
         playerRocket.ResetPlayer();
         items.ResetItems();
         landingArea.ResetLandingArea();
-//        meteors.ResetMeteors();
+        meteor.ResetMeteors();
+
         life = LIFE_NUM;
         time = TIME_LIMIT;
     }
@@ -124,6 +131,7 @@ public class Game {
     {
         // Move the rocket
         playerRocket.Update();
+        meteor.Update();
         
         // Checks where the player rocket is. Is it still in the space or is it landed or crashed?
         // First we check bottom y coordinate of the rocket if is it near the landing area.
@@ -211,6 +219,8 @@ public class Game {
         playerRocket.Draw(g2d);
 
         items.Draw(g2d);
+
+        meteor.Draw(g2d);
 
 
         g2d.drawString("Life: " + life, 5, 30);
