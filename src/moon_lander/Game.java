@@ -55,6 +55,7 @@ public class Game {
     private final long TIME_LIMIT = 5;
 
     private long time = TIME_LIMIT;
+
     
 
     public Game()
@@ -138,7 +139,8 @@ public class Game {
         if(playerRocket.y + playerRocket.rocketImgHeight - 10 > landingArea.y)
         {
             // Here we check if the rocket is over landing area.
-            if((playerRocket.x > landingArea.x) && (playerRocket.x < landingArea.x + landingArea.landingAreaImgWidth - playerRocket.rocketImgWidth))
+            if((playerRocket.x > landingArea.x) &&
+                    (playerRocket.x < landingArea.x + landingArea.landingAreaImgWidth - playerRocket.rocketImgWidth))
             {
                 // Here we check if the rocket speed isn't too high.
                 if(playerRocket.speedY <= playerRocket.topLandingSpeed)
@@ -152,8 +154,10 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if (((items.flagX - (items.flagImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.flagX + (items.flagImgWidth / 2))) &&
-                ((items.flagY - (items.flagImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.flagY + (items.flagImgHeight / 2))))
+        if (((items.flagX - (items.flagImgWidth / 2) <= playerRocket.x ) &&
+                (playerRocket.x <= items.flagX + (items.flagImgWidth / 2))) &&
+                ((items.flagY - (items.flagImgHeight / 2) <= playerRocket.y ) &&
+                        (playerRocket.y <= items.flagY + (items.flagImgHeight / 2))))
         {
             if (!items.flagGotten)
             {
@@ -163,12 +167,12 @@ public class Game {
 
         }
 
-
-
         for (int i=0; i<Items.ITEM_NUM; i++)
         {
-            if (((items.heartX[i] - (items.heartImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.heartX[i] + (items.heartImgWidth / 2))) &&
-                    ((items.heartY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.heartY[i] + (items.heartImgHeight / 2))))
+            if (((items.heartX[i] - (items.heartImgWidth / 2) <= playerRocket.x ) &&
+                    (playerRocket.x <= items.heartX[i] + (items.heartImgWidth / 2))) &&
+                    ((items.heartY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) &&
+                            (playerRocket.y <= items.heartY[i] + (items.heartImgHeight / 2))))
             {
                 if (!items.heartGotten[i])
                 {
@@ -178,8 +182,10 @@ public class Game {
 
             }
 
-            if (((items.watchX[i] - (items.watchImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.watchX[i] + (items.watchImgWidth / 2))) &&
-                    ((items.watchY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.watchY[i] + (items.watchImgHeight / 2))))
+            if (((items.watchX[i] - (items.watchImgWidth / 2) <= playerRocket.x ) &&
+                    (playerRocket.x <= items.watchX[i] + (items.watchImgWidth / 2))) &&
+                    ((items.watchY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) &&
+                            (playerRocket.y <= items.watchY[i] + (items.watchImgHeight / 2))))
             {
                 if (!items.watchGotten[i])
                 {
@@ -188,8 +194,6 @@ public class Game {
                 }
             }
         }
-
-
 
         if(gameTime / Framework.secInNanosec >= time){
             if(life > 0){
@@ -202,6 +206,15 @@ public class Game {
         if(life == 0){
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
+
+        if ((meteor.x - meteor.meteorImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) &&
+                (playerRocket.x - playerRocket.realRocketImgWidth / 2) <= (meteor.x + meteor.meteorImgWidth / 2) &&
+                (meteor.y - meteor.meteorImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) &&
+                ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= meteor.y + meteor.meteorImgHeight / 2))
+        {
+            Framework.gameState = Framework.GameState.GAMEOVER;
+        }
+
     }
     
     /**

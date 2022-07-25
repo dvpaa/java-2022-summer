@@ -18,12 +18,6 @@ import javax.imageio.ImageIO;
 public class Meteor {
 
     /**
-     * We use this to generate a random number for starting coordinates of the meteor.
-     */
-    private Random random;
-
-
-    /**
      * Images of the meteor in air.
      */
     private BufferedImage meteorImg;
@@ -45,24 +39,19 @@ public class Meteor {
     private int speedX;
 
     /**
-     * How fast and to which direction meteor is moving on y coordinate?
+     * X coordinate of the meteor.
      */
-    public int speedY;
+    public int x;
 
     /**
      * X coordinate of the meteor.
      */
-    public int meteorX;
-
-    /**
-     * X coordinate of the meteor.
-     */
-    public int meteorY;
+    public int y;
 
     /**
      * Direction of the meteor.
      */
-    private int meteorD;
+    private int dir;
 
 
     public Meteor()
@@ -75,8 +64,6 @@ public class Meteor {
 
     private void Initialize()
     {
-        random = new Random();
-
         ResetMeteors();
     }
 
@@ -98,38 +85,38 @@ public class Meteor {
 
     public void ResetMeteors()
     {
-        meteorD = 1;
+        dir = 1;
 
-        meteorX = meteorImgWidth / 2;
+        x = meteorImgWidth / 2;
 
-        meteorY = (int)(Framework.frameHeight * 0.60);
+        y = (int)(Framework.frameHeight * 0.60);
 
         speedX = 30;
     }
 
     public void Update()
     {
-        if (meteorX <= meteorImgWidth / 2)
+        if (x <= meteorImgWidth / 2)
         {
-            meteorD = 1;
+            dir = 1;
         }
-        else if (meteorX >= Framework.frameWidth - (meteorImgWidth / 2)) {
-            meteorD = 2;
+        else if (x >= Framework.frameWidth - (meteorImgWidth / 2)) {
+            dir = 2;
         }
 
-        if (meteorD == 1)
+        if (dir == 1)
         {
-            meteorX += speedX;
+            x += speedX;
         }
         else
         {
-            meteorX -= speedX;
+            x -= speedX;
         }
     }
 
     public void Draw(Graphics2D g2d)
     {
-        g2d.drawImage(meteorImg, meteorX, meteorY, null);
+        g2d.drawImage(meteorImg, x, y, null);
     }
 }
 
