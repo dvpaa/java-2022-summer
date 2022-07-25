@@ -47,6 +47,7 @@ public class PlayerRocket {
      * Accelerating speed of the rocket.
      */
     private int speedAccelerating;
+
     /**
      * Stopping/Falling speed of the rocket. Falling speed because, the gravity pulls the rocket down to the moon.
      */
@@ -93,6 +94,10 @@ public class PlayerRocket {
      * Height of rocket.
      */
     public int rocketImgHeight;
+
+    public int realRocketImgWidth;
+
+    public int realRocketImgHeight;
     
     
     public PlayerRocket()
@@ -126,6 +131,9 @@ public class PlayerRocket {
             rocketImg = ImageIO.read(rocketImgUrl);
             rocketImgWidth = rocketImg.getWidth();
             rocketImgHeight = rocketImg.getHeight();
+
+            realRocketImgWidth = rocketImgWidth - 60;
+            realRocketImgHeight = rocketImgHeight - 40;
             
             URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
             rocketLandedImg = ImageIO.read(rocketLandedImgUrl);

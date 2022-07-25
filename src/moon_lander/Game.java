@@ -32,7 +32,12 @@ public class Game {
      * Landing area on which rocket will have to land.
      */
     private LandingArea landingArea;
-    
+
+    /**
+     * Meteor which player will have to avoid.
+     */
+    private Meteor meteor;
+
     /**
      * Game background image.
      */
@@ -50,6 +55,7 @@ public class Game {
     private final long TIME_LIMIT = 5;
 
     private long time = TIME_LIMIT;
+
     
 
     public Game()
@@ -79,6 +85,7 @@ public class Game {
         playerRocket = new PlayerRocket();
         landingArea  = new LandingArea();
         items = new Items();
+        meteor = new Meteor();
     }
     
     /**
@@ -108,7 +115,8 @@ public class Game {
         playerRocket.ResetPlayer();
         items.ResetItems();
         landingArea.ResetLandingArea();
-//        meteors.ResetMeteors();
+        meteor.ResetMeteors();
+
         life = LIFE_NUM;
         time = TIME_LIMIT;
     }
@@ -124,13 +132,15 @@ public class Game {
     {
         // Move the rocket
         playerRocket.Update();
+        meteor.Update();
         
         // Checks where the player rocket is. Is it still in the space or is it landed or crashed?
         // First we check bottom y coordinate of the rocket if is it near the landing area.
         if(playerRocket.y + playerRocket.rocketImgHeight - 10 > landingArea.y)
         {
             // Here we check if the rocket is over landing area.
-            if((playerRocket.x > landingArea.x) && (playerRocket.x < landingArea.x + landingArea.landingAreaImgWidth - playerRocket.rocketImgWidth))
+            if((playerRocket.x > landingArea.x) &&
+                    (playerRocket.x < landingArea.x + landingArea.landingAreaImgWidth - playerRocket.rocketImgWidth))
             {
                 // Here we check if the rocket speed isn't too high.
                 if(playerRocket.speedY <= playerRocket.topLandingSpeed)
@@ -144,8 +154,10 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if (((items.flagX - (items.flagImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.flagX + (items.flagImgWidth / 2))) &&
-                ((items.flagY - (items.flagImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.flagY + (items.flagImgHeight / 2))))
+        if (((items.flagX - (items.flagImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
+                ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.flagX + (items.flagImgWidth / 2))) &&
+                ((items.flagY - (items.flagImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
+                        ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.flagY + (items.flagImgHeight / 2))))
         {
             if (!items.flagGotten)
             {
@@ -155,12 +167,12 @@ public class Game {
 
         }
 
-
-
         for (int i=0; i<Items.ITEM_NUM; i++)
         {
-            if (((items.heartX[i] - (items.heartImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.heartX[i] + (items.heartImgWidth / 2))) &&
-                    ((items.heartY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.heartY[i] + (items.heartImgHeight / 2))))
+            if (((items.heartX[i] - (items.heartImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
+                    ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.heartX[i] + (items.heartImgWidth / 2))) &&
+                    ((items.heartY[i] - (items.heartImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
+                            ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.heartY[i] + (items.heartImgHeight / 2))))
             {
                 if (!items.heartGotten[i])
                 {
@@ -170,8 +182,10 @@ public class Game {
 
             }
 
-            if (((items.watchX[i] - (items.watchImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.watchX[i] + (items.watchImgWidth / 2))) &&
-                    ((items.watchY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.watchY[i] + (items.watchImgHeight / 2))))
+            if (((items.watchX[i] - (items.watchImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
+                    ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.watchX[i] + (items.watchImgWidth / 2))) &&
+                    ((items.watchY[i] - (items.watchImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
+                            ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.watchY[i] + (items.watchImgHeight / 2))))
             {
                 if (!items.watchGotten[i])
                 {
@@ -180,8 +194,6 @@ public class Game {
                 }
             }
         }
-
-
 
         if(gameTime / Framework.secInNanosec >= time){
             if(life > 0){
@@ -194,6 +206,15 @@ public class Game {
         if(life == 0){
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
+
+        if ((meteor.x - meteor.meteorImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) &&
+                (playerRocket.x - playerRocket.realRocketImgWidth / 2) <= (meteor.x + meteor.meteorImgWidth / 2) &&
+                (meteor.y - meteor.meteorImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) &&
+                ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= meteor.y + meteor.meteorImgHeight / 2))
+        {
+            Framework.gameState = Framework.GameState.GAMEOVER;
+        }
+
     }
     
     /**
@@ -211,6 +232,8 @@ public class Game {
         playerRocket.Draw(g2d);
 
         items.Draw(g2d);
+
+        meteor.Draw(g2d);
 
 
         g2d.drawString("Life: " + life, 5, 30);
