@@ -154,10 +154,10 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if (((items.flagX - (items.flagImgWidth / 2) <= playerRocket.x ) &&
-                (playerRocket.x <= items.flagX + (items.flagImgWidth / 2))) &&
-                ((items.flagY - (items.flagImgHeight / 2) <= playerRocket.y ) &&
-                        (playerRocket.y <= items.flagY + (items.flagImgHeight / 2))))
+        if (((items.flagX - (items.flagImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
+                ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.flagX + (items.flagImgWidth / 2))) &&
+                ((items.flagY - (items.flagImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
+                        ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.flagY + (items.flagImgHeight / 2))))
         {
             if (!items.flagGotten)
             {
@@ -169,10 +169,10 @@ public class Game {
 
         for (int i=0; i<Items.ITEM_NUM; i++)
         {
-            if (((items.heartX[i] - (items.heartImgWidth / 2) <= playerRocket.x ) &&
-                    (playerRocket.x <= items.heartX[i] + (items.heartImgWidth / 2))) &&
-                    ((items.heartY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) &&
-                            (playerRocket.y <= items.heartY[i] + (items.heartImgHeight / 2))))
+            if (((items.heartX[i] - (items.heartImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
+                    ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.heartX[i] + (items.heartImgWidth / 2))) &&
+                    ((items.heartY[i] - (items.heartImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
+                            ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.heartY[i] + (items.heartImgHeight / 2))))
             {
                 if (!items.heartGotten[i])
                 {
@@ -182,10 +182,10 @@ public class Game {
 
             }
 
-            if (((items.watchX[i] - (items.watchImgWidth / 2) <= playerRocket.x ) &&
-                    (playerRocket.x <= items.watchX[i] + (items.watchImgWidth / 2))) &&
-                    ((items.watchY[i] - (items.heartImgHeight / 2) <= playerRocket.y ) &&
-                            (playerRocket.y <= items.watchY[i] + (items.watchImgHeight / 2))))
+            if (((items.watchX[i] - (items.watchImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
+                    ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.watchX[i] + (items.watchImgWidth / 2))) &&
+                    ((items.watchY[i] - (items.watchImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
+                            ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.watchY[i] + (items.watchImgHeight / 2))))
             {
                 if (!items.watchGotten[i])
                 {
