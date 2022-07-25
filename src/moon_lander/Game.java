@@ -155,14 +155,14 @@ public class Game {
             items.flagGotten = true;
         }
 
-        for (int i=0; i<items.getMETEOR_NUM(); i++)
-        {
-            if (((items.meteorX[i] - (items.meteorImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.meteorX[i] + (items.meteorImgWidth / 2))) &&
-                    ((items.meteorY[i] - (items.meteorImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.meteorY[i] + (items.meteorImgHeight / 2))))
-            {
-                items.meteorGotten[i] = true;
-            }
-        }
+//        for (int i=0; i<items.getMETEOR_NUM(); i++)
+//        {
+//            if (((items.meteorX[i] - (items.meteorImgWidth / 2) <= playerRocket.x ) && (playerRocket.x <= items.meteorX[i] + (items.meteorImgWidth / 2))) &&
+//                    ((items.meteorY[i] - (items.meteorImgHeight / 2) <= playerRocket.y ) && (playerRocket.y <= items.meteorY[i] + (items.meteorImgHeight / 2))))
+//            {
+//                items.meteorGotten[i] = true;
+//            }
+//        }
 
         for (int i=0; i<items.getITEM_NUM(); i++)
         {
@@ -178,9 +178,6 @@ public class Game {
                 items.watchGotten[i] = true;
             }
         }
-
-
-
 
 
 
@@ -213,7 +210,6 @@ public class Game {
 
         items.Draw(g2d);
 
-//        meteors.Draw(g2d);
 
         g2d.drawString("Life: " + life, 5, 30);
 

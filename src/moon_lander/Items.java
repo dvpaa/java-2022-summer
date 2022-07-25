@@ -65,15 +65,15 @@ public class Items {
      */
     public int[] watchY;
 
-    /**
-     * X coordinates of the meteor.
-     */
-    public int[] meteorX;
-
-    /**
-     * Y coordinates of the meteor.
-     */
-    public int[] meteorY;
+//    /**
+//     * X coordinates of the meteor.
+//     */
+//    public int[] meteorX;
+//
+//    /**
+//     * Y coordinates of the meteor.
+//     */
+//    public int[] meteorY;
 
     /**
      * Image of the flag in air.
@@ -90,10 +90,10 @@ public class Items {
      */
     private BufferedImage[] watchImg;
 
-    /**
-     * Images of the meteor in air.
-     */
-    private BufferedImage[] meteorImg;
+//    /**
+//     * Images of the meteor in air.
+//     */
+//    private BufferedImage[] meteorImg;
 
     /**
      * Width of flag.
@@ -125,15 +125,15 @@ public class Items {
      */
     public int watchImgHeight;
 
-    /**
-     * Width of meteor.
-     */
-    public int meteorImgWidth;
-
-    /**
-     * Height of meteor.
-     */
-    public int meteorImgHeight;
+//    /**
+//     * Width of meteor.
+//     */
+//    public int meteorImgWidth;
+//
+//    /**
+//     * Height of meteor.
+//     */
+//    public int meteorImgHeight;
 
     /**
      * Is flag gotten?
@@ -150,10 +150,10 @@ public class Items {
      */
     public boolean[] watchGotten;
 
-    /**
-     * Is item gotten?
-     */
-    public boolean[] meteorGotten;
+//    /**
+//     * Is item gotten?
+//     */
+//    public boolean[] meteorGotten;
 
     private final int standardPos = 100;
 
@@ -176,8 +176,8 @@ public class Items {
         watchX = new int[ITEM_NUM];
         watchY = new int[ITEM_NUM];
 
-        meteorX = new int[METEOR_NUM];
-        meteorY = new int[METEOR_NUM];
+//        meteorX = new int[METEOR_NUM];
+//        meteorY = new int[METEOR_NUM];
 
         ResetItems();
     }
@@ -189,7 +189,7 @@ public class Items {
 
         watchImg = new BufferedImage[ITEM_NUM];
 
-        meteorImg = new BufferedImage[METEOR_NUM];
+//        meteorImg = new BufferedImage[METEOR_NUM];
 
 
         try
@@ -209,11 +209,11 @@ public class Items {
                 watchImg[i] = ImageIO.read(watchIgmUrl);
             }
 
-            for (int i=0; i<METEOR_NUM; i++)
-            {
-                URL meteorImgUrl = this.getClass().getResource("/resources/images/meteor_40.png");
-                meteorImg[i] = ImageIO.read(meteorImgUrl);
-            }
+//            for (int i=0; i<METEOR_NUM; i++)
+//            {
+//                URL meteorImgUrl = this.getClass().getResource("/resources/images/meteor_40.png");
+//                meteorImg[i] = ImageIO.read(meteorImgUrl);
+//            }
 
             heartImgWidth = heartImg[0].getWidth();
             heartImgHeight = heartImg[0].getHeight();
@@ -221,8 +221,8 @@ public class Items {
             watchImgWidth = watchImg[0].getWidth();
             watchImgHeight = watchImg[0].getHeight();
 
-            meteorImgWidth = meteorImg[0].getWidth();
-            meteorImgHeight = meteorImg[0].getHeight();
+//            meteorImgWidth = meteorImg[0].getWidth();
+//            meteorImgHeight = meteorImg[0].getHeight();
         }
         catch (IOException ex) {
             Logger.getLogger(Items.class.getName()).log(Level.SEVERE, null, ex);
@@ -235,11 +235,11 @@ public class Items {
 
         heartGotten = new boolean[ITEM_NUM];
         watchGotten = new boolean[ITEM_NUM];
-        meteorGotten = new boolean[METEOR_NUM];
+//        meteorGotten = new boolean[METEOR_NUM];
 
         Arrays.fill(heartGotten, false);
         Arrays.fill(watchGotten, false);
-        Arrays.fill(meteorGotten, false);
+//        Arrays.fill(meteorGotten, false);
 
         flagX = random.nextInt(Framework.frameWidth - flagImgWidth);
         flagY = 15 + random.nextInt(Framework.frameHeight - flagImgHeight - standardPos);
@@ -253,11 +253,11 @@ public class Items {
             watchY[i] = 15 + random.nextInt(Framework.frameHeight - watchImgHeight - standardPos);
         }
 
-        for (int i=0; i<METEOR_NUM; i++)
-        {
-            meteorX[i] = random.nextInt(Framework.frameWidth - meteorImgWidth);
-            meteorY[i] = 15 + random.nextInt(Framework.frameHeight - meteorImgHeight - standardPos);
-        }
+//        for (int i=0; i<METEOR_NUM; i++)
+//        {
+//            meteorX[i] = random.nextInt(Framework.frameWidth - meteorImgWidth);
+//            meteorY[i] = 15 + random.nextInt(Framework.frameHeight - meteorImgHeight - standardPos);
+//        }
     }
 
 
@@ -284,15 +284,15 @@ public class Items {
             }
         }
 
-        for (int i=0; i<METEOR_NUM; i++)
-        {
-            // If the meteor item is gotten?
-            if (!meteorGotten[i])
-
-            {
-                g2d.drawImage(meteorImg[i], meteorX[i], meteorY[i], null);
-            }
-        }
+//        for (int i=0; i<METEOR_NUM; i++)
+//        {
+//            // If the meteor item is gotten?
+//            if (!meteorGotten[i])
+//
+//            {
+//                g2d.drawImage(meteorImg[i], meteorX[i], meteorY[i], null);
+//            }
+//        }
     }
 
     public int getITEM_NUM()
