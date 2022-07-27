@@ -119,8 +119,6 @@ public class Items {
      */
     public boolean[] watchGotten;
 
-    private final int standardPos = 100;
-
 
     public Items() {
 
@@ -186,6 +184,7 @@ public class Items {
         Arrays.fill(watchGotten, false);
 
         flagX = random.nextInt(Framework.frameWidth - flagImgWidth);
+        int standardPos = 100;
         flagY = 15 + random.nextInt(Framework.frameHeight - flagImgHeight - standardPos);
 
         for (int i = 0; i < ITEM_NUM; i++) {
@@ -216,16 +215,5 @@ public class Items {
                 g2d.drawImage(watchImg[i], watchX[i], watchY[i], null);
             }
         }
-
-//        for (int i=0; i<METEOR_NUM; i++)
-//        {
-//            // If the meteor item is gotten?
-//            if (!meteorGotten[i])
-//
-//            {
-//                g2d.drawImage(meteorImg[i], meteorX[i], meteorY[i], null);
-//            }
-//        }
-
     }
 }

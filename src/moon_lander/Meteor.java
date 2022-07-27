@@ -18,6 +18,11 @@ import javax.imageio.ImageIO;
 public class Meteor {
 
     /**
+     * We use this to generate a random number for starting x coordinate of the meteor.
+     */
+    private Random random;
+
+    /**
      * Images of the meteor in air.
      */
     private BufferedImage meteorImg;
@@ -32,11 +37,6 @@ public class Meteor {
      * Height of meteor.
      */
     public int meteorImgHeight;
-
-    /**
-     * How fast and to which direction meteor is moving on x coordinate?
-     */
-    private int speedX;
 
     /**
      * X coordinate of the meteor.
@@ -64,6 +64,7 @@ public class Meteor {
 
     private void Initialize()
     {
+        random = new Random();
         ResetMeteors();
     }
 
@@ -73,7 +74,7 @@ public class Meteor {
 
         try
         {
-            URL meteorImgUrl = this.getClass().getResource("/resources/images/meteor_100.png");
+            URL meteorImgUrl = this.getClass().getResource("/resources/images/meteor_40.png");
             meteorImg = ImageIO.read(meteorImgUrl);
             meteorImgWidth = meteorImg.getWidth();
             meteorImgHeight = meteorImg.getHeight();
@@ -85,33 +86,18 @@ public class Meteor {
 
     public void ResetMeteors()
     {
-        dir = 1;
+        x = random.nextInt(Framework.frameWidth - meteorImgWidth);
 
-        x = meteorImgWidth / 2;
-
-        y = (int)(Framework.frameHeight * 0.60);
-
-        speedX = 30;
+        y = (int)(Framework.frameHeight * 0.90);
     }
 
-    public void Update()
+    public void Update(int rocketX, int rocketY)
     {
-        if (x <= meteorImgWidth / 2)
-        {
-            dir = 1;
-        }
-        else if (x >= Framework.frameWidth - (meteorImgWidth / 2)) {
-            dir = 2;
-        }
+        int speedX = (int)((rocketX - x) * 0.1);
+        int speedY = (int)((rocketY - y) * 0.1);
 
-        if (dir == 1)
-        {
-            x += speedX;
-        }
-        else
-        {
-            x -= speedX;
-        }
+        x += speedX;
+        y += speedY;
     }
 
     public void Draw(Graphics2D g2d)
