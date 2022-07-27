@@ -48,7 +48,7 @@ public class Game {
      */
     private BufferedImage redBorderImg;
 
-    private final int LIFE_NUM = 3;
+    private final int LIFE_NUM = 1;
 
     private int life = LIFE_NUM;
 
