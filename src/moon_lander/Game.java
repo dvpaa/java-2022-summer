@@ -58,7 +58,8 @@ public class Game {
 
     Audio itemSound;
 
-    Audio successSound;
+
+
 
     
 
@@ -91,7 +92,6 @@ public class Game {
         items = new Items();
         meteor = new Meteor();
         itemSound = new Audio("resources/sounds/item_sound.wav", true);
-        successSound = new Audio("resources/sounds/success_sound.wav", true);
     }
     
     /**

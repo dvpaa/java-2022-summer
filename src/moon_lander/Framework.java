@@ -78,6 +78,7 @@ public class Framework extends Canvas {
     Audio bgm;
 
 
+
     
     public Framework ()
     {
