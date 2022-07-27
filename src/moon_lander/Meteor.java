@@ -48,11 +48,9 @@ public class Meteor {
      */
     public int y;
 
-    /**
-     * Direction of the meteor.
-     */
-    private int dir;
+    private int speedX;
 
+    private int speedY;
 
     public Meteor()
     {
@@ -93,8 +91,13 @@ public class Meteor {
 
     public void Update(int rocketX, int rocketY)
     {
-        int speedX = (int)((rocketX - x) * 0.1);
-        int speedY = (int)((rocketY - y) * 0.1);
+        int dist = (int)(Math.sqrt(Math.pow((x - rocketX), 2) + Math.pow((y - rocketY), 2)));
+
+        if (dist > 200)
+        {
+            speedX = (int)((rocketX - x) * 0.1);
+            speedY = (int)((rocketY - y) * 0.1);
+        }
 
         x += speedX;
         y += speedY;
