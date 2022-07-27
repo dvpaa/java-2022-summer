@@ -132,7 +132,7 @@ public class Game {
     {
         // Move the rocket
         playerRocket.Update();
-        meteor.Update();
+        meteor.Update(playerRocket.x, playerRocket.y);
         
         // Checks where the player rocket is. Is it still in the space or is it landed or crashed?
         // First we check bottom y coordinate of the rocket if is it near the landing area.
