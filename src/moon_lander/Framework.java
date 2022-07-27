@@ -77,12 +77,15 @@ public class Framework extends Canvas {
 
     Audio bgm;
 
+
     
     public Framework ()
     {
         super();
         
         gameState = GameState.VISUALIZING;
+
+        Initialize();
         
         //We start game in new thread.
         Thread gameThread = new Thread() {
@@ -101,7 +104,7 @@ public class Framework extends Canvas {
      */
     private void Initialize()
     {
-
+        bgm = new Audio("resources/sounds/bgm.wav", true);
     }
     
     /**
@@ -110,7 +113,6 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
-        bgm = new Audio("resources/sounds/bgm.mp3", true);
         if (bgm.audioPlayingTrue())
         {
             bgm.start();

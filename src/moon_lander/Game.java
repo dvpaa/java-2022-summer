@@ -56,6 +56,10 @@ public class Game {
 
     private long time = TIME_LIMIT;
 
+    Audio itemSound;
+
+    Audio successSound;
+
     
 
     public Game()
@@ -86,6 +90,8 @@ public class Game {
         landingArea  = new LandingArea();
         items = new Items();
         meteor = new Meteor();
+        itemSound = new Audio("resources/sounds/item_sound.wav", true);
+        successSound = new Audio("resources/sounds/success_sound.wav", true);
     }
     
     /**
@@ -144,7 +150,9 @@ public class Game {
             {
                 // Here we check if the rocket speed isn't too high.
                 if(playerRocket.speedY <= playerRocket.topLandingSpeed)
+                {
                     playerRocket.landed = true;
+                }
                 else
                     playerRocket.crashed = true;
             }
@@ -161,6 +169,7 @@ public class Game {
         {
             if (!items.flagGotten)
             {
+                if (itemSound.audioPlayingTrue()) { itemSound.start(); }
                 items.flagGotten = true;
                 landingArea.flag = true;
             }
@@ -176,6 +185,7 @@ public class Game {
             {
                 if (!items.heartGotten[i])
                 {
+                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
                     items.heartGotten[i] = true;
                     life += 1;
                 }
@@ -189,6 +199,7 @@ public class Game {
             {
                 if (!items.watchGotten[i])
                 {
+                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
                     items.watchGotten[i] = true;
                     time += 5;
                 }
@@ -212,7 +223,7 @@ public class Game {
                 (meteor.y - meteor.meteorImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) &&
                 ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= meteor.y + meteor.meteorImgHeight / 2))
         {
-            Framework.gameState = Framework.GameState.GAMEOVER;
+//            Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
     }
@@ -259,6 +270,9 @@ public class Game {
         {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);
             g2d.drawString("You have landed in " + gameTime / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 20);
+            if (itemSound.audioPlayingTrue()) {
+                itemSound.start();
+            }
         }
         else
         {
