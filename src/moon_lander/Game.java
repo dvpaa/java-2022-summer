@@ -227,7 +227,7 @@ public class Game {
                 (meteor.y - meteor.meteorImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) &&
                 ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= meteor.y + meteor.meteorImgHeight / 2))
         {
-//            Framework.gameState = Framework.GameState.GAMEOVER;
+            Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
     }
@@ -274,9 +274,6 @@ public class Game {
         {
             g2d.drawString("You have successfully landed!", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3);
             g2d.drawString("You have landed in " + gameTime / Framework.secInNanosec + " seconds.", Framework.frameWidth / 2 - 100, Framework.frameHeight / 3 + 20);
-            if (itemSound.audioPlayingTrue()) {
-                itemSound.start();
-            }
         }
         else
         {
