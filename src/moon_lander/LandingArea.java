@@ -74,8 +74,8 @@ public class LandingArea {
 
         // X coordinate of the landing area
         x = (int)(Framework.frameWidth * random.nextFloat(0f, 0.9f));
-        // Y coordinate of the landing area is at 86% frame height.
-        y = (int)(Framework.frameHeight * 0.88);
+        // Y coordinate of the landing area is at 90% frame height.
+        y = (int)(Framework.frameHeight * 0.9);
     }
     
     
