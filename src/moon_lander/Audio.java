@@ -12,7 +12,7 @@ public class Audio {
     private File audioFile;
     private AudioInputStream audioInputStream;
     private boolean isLoop;
-    private boolean isPlaying = true;
+    public boolean isPlaying = true;
     private long clipTime;
 
     public Audio(String pathname,boolean isLoop)

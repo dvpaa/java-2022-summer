@@ -98,6 +98,8 @@ public class PlayerRocket {
     public int realRocketImgWidth;
 
     public int realRocketImgHeight;
+
+    Audio rocketFire;
     
     
     public PlayerRocket()
@@ -113,6 +115,8 @@ public class PlayerRocket {
     private void Initialize()
     {
         random = new Random();
+
+        rocketFire = new Audio("resources/sounds/rocket_fire.wav", true);
         
         ResetPlayer();
         
@@ -172,9 +176,21 @@ public class PlayerRocket {
     {
         // Calculating speed for moving up or down.
         if(Canvas.keyboardKeyState(KeyEvent.VK_W))
+        {
             speedY -= speedAccelerating;
+            if (rocketFire.audioPlayingTrue()) {
+                rocketFire.start();
+            }
+        }
         else
+        {
             speedY += speedStopping;
+            if (rocketFire.isPlaying)
+            {
+                rocketFire.stop();
+            }
+        }
+
         
         // Calculating speed for moving or stopping to the left.
         if(Canvas.keyboardKeyState(KeyEvent.VK_A))
@@ -212,8 +228,9 @@ public class PlayerRocket {
         else
         {
             // If player hold down a W key we draw rocket fire.
-            if(Canvas.keyboardKeyState(KeyEvent.VK_W))
+            if(Canvas.keyboardKeyState(KeyEvent.VK_W)) {
                 g2d.drawImage(rocketFireImg, x + 12, y + 66, null);
+            }
             g2d.drawImage(rocketImg, x, y, null);
         }
     }
