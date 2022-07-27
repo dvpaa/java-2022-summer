@@ -70,12 +70,13 @@ public class Framework extends Canvas {
     // The actual game
     private Game game;
     
-    
     /**
      * Image for menu.
      */
     private BufferedImage moonLanderMenuImg;
-    
+
+    Audio bgm;
+
     
     public Framework ()
     {
@@ -100,7 +101,7 @@ public class Framework extends Canvas {
      */
     private void Initialize()
     {
-        
+
     }
     
     /**
@@ -109,6 +110,13 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
+        bgm = new Audio("resources/sounds/bgm.mp3", true);
+        if (bgm.audioPlayingTrue())
+        {
+            bgm.start();
+        }
+
+
         try
         {
             URL moonLanderMenuImgUrl = this.getClass().getResource("/resources/images/menu.jpg");
@@ -117,6 +125,7 @@ public class Framework extends Canvas {
         catch (IOException ex) {
             Logger.getLogger(Framework.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
     
     /**
