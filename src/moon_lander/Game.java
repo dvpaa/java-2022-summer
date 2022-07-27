@@ -58,6 +58,8 @@ public class Game {
 
     Audio itemSound;
 
+    Audio lossLifeSound;
+
 
 
 
@@ -92,6 +94,7 @@ public class Game {
         items = new Items();
         meteor = new Meteor();
         itemSound = new Audio("resources/sounds/item_sound.wav", true);
+        lossLifeSound = new Audio("resources/sounds/loss_life.wav", true);
     }
     
     /**
@@ -210,6 +213,7 @@ public class Game {
             if(life > 0){
                 life -= 1;
                 time += TIME_LIMIT;
+                if (lossLifeSound.audioPlayingTrue()) { lossLifeSound.start(); }
             }
 
         }
