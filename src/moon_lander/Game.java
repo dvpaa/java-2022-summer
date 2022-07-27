@@ -56,6 +56,8 @@ public class Game {
 
     private long time = TIME_LIMIT;
 
+    Audio itemSound;
+
     
 
     public Game()
@@ -86,6 +88,7 @@ public class Game {
         landingArea  = new LandingArea();
         items = new Items();
         meteor = new Meteor();
+        itemSound = new Audio("resources/sounds/item_sound.wav", true);
     }
     
     /**
@@ -161,6 +164,7 @@ public class Game {
         {
             if (!items.flagGotten)
             {
+                if (itemSound.audioPlayingTrue()) { itemSound.start(); }
                 items.flagGotten = true;
                 landingArea.flag = true;
             }
@@ -176,6 +180,7 @@ public class Game {
             {
                 if (!items.heartGotten[i])
                 {
+                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
                     items.heartGotten[i] = true;
                     life += 1;
                 }
@@ -189,6 +194,7 @@ public class Game {
             {
                 if (!items.watchGotten[i])
                 {
+                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
                     items.watchGotten[i] = true;
                     time += 5;
                 }

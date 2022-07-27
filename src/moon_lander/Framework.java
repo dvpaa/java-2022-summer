@@ -110,7 +110,7 @@ public class Framework extends Canvas {
      */
     private void LoadContent()
     {
-        bgm = new Audio("resources/sounds/bgm.mp3", true);
+        bgm = new Audio("resources/sounds/bgm.wav", true);
         if (bgm.audioPlayingTrue())
         {
             bgm.start();
