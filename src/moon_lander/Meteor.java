@@ -69,7 +69,6 @@ public class Meteor {
 
     private void LoadContent()
     {
-
         try
         {
             URL meteorImgUrl = this.getClass().getResource("/resources/images/meteor_40.png");

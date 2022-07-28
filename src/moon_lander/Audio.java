@@ -19,7 +19,7 @@ public class Audio {
     {
         try
         {
-            clip=AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             audioFile = new File(pathname);
             audioInputStream = AudioSystem.getAudioInputStream(audioFile);
             clip.open(audioInputStream);

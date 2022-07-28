@@ -213,7 +213,6 @@ public class Game {
             if(life > 0){
                 life -= 1;
                 time += TIME_LIMIT;
-                if (lossLifeSound.audioPlayingTrue()) { lossLifeSound.start(); }
             }
 
         }
