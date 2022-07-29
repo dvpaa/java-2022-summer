@@ -165,46 +165,45 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if (((items.flagX - (items.flagImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
-                ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.flagX + (items.flagImgWidth / 2))) &&
-                ((items.flagY - (items.flagImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
-                        ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.flagY + (items.flagImgHeight / 2))))
-        {
-            if (!items.flagGotten)
-            {
-                if (itemSound.audioPlayingTrue()) { itemSound.start(); }
-                items.flagGotten = true;
-                landingArea.flag = true;
-            }
 
+        if (items.flagX < playerRocket.x + playerRocket.rocketImgWidth && playerRocket.x < items.flagX + items.flagImgWidth)
+        {
+            if (items.flagY < playerRocket.y + playerRocket.rocketImgHeight && playerRocket.y < items.flagY + items.flagImgHeight)
+            {
+                if (!items.flagGotten)
+                {
+                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
+                    items.flagGotten = true;
+                    landingArea.flag = true;
+                }
+            }
         }
 
         for (int i=0; i<Items.ITEM_NUM; i++)
         {
-            if (((items.heartX[i] - (items.heartImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
-                    ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.heartX[i] + (items.heartImgWidth / 2))) &&
-                    ((items.heartY[i] - (items.heartImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
-                            ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.heartY[i] + (items.heartImgHeight / 2))))
+            if (items.heartX[i] < playerRocket.x + playerRocket.rocketImgWidth && playerRocket.x < items.heartX[i] + items.heartImgWidth)
             {
-                if (!items.heartGotten[i])
+                if (items.heartY[i] < playerRocket.y + playerRocket.rocketImgHeight && playerRocket.y < items.heartY[i] + items.heartImgHeight)
                 {
-                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
-                    items.heartGotten[i] = true;
-                    life += 1;
+                    if (!items.heartGotten[i])
+                    {
+                        if (itemSound.audioPlayingTrue()) { itemSound.start(); }
+                        items.heartGotten[i] = true;
+                        life += 1;
+                    }
                 }
-
             }
 
-            if (((items.watchX[i] - (items.watchImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) ) &&
-                    ((playerRocket.x - playerRocket.realRocketImgWidth / 2) <= items.watchX[i] + (items.watchImgWidth / 2))) &&
-                    ((items.watchY[i] - (items.watchImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) ) &&
-                            ((playerRocket.y - playerRocket.realRocketImgHeight / 2) <= items.watchY[i] + (items.watchImgHeight / 2))))
+            if (items.watchX[i] < playerRocket.x + playerRocket.rocketImgWidth && playerRocket.x < items.watchX[i] + items.watchImgWidth)
             {
-                if (!items.watchGotten[i])
+                if (items.watchY[i] < playerRocket.y + playerRocket.rocketImgHeight && playerRocket.y < items.watchY[i] + items.watchImgHeight)
                 {
-                    if (itemSound.audioPlayingTrue()) { itemSound.start(); }
-                    items.watchGotten[i] = true;
-                    time += 5;
+                    if (!items.watchGotten[i])
+                    {
+                        if (itemSound.audioPlayingTrue()) { itemSound.start(); }
+                        items.watchGotten[i] = true;
+                        time += 5;
+                    }
                 }
             }
         }
@@ -221,12 +220,13 @@ public class Game {
             Framework.gameState = Framework.GameState.GAMEOVER;
         }
 
-        if ((meteor.x - meteor.meteorImgWidth / 2) <= (playerRocket.x + playerRocket.realRocketImgWidth / 2) &&
-                (playerRocket.x - playerRocket.realRocketImgWidth / 2) <= (meteor.x + meteor.meteorImgWidth / 2) &&
-                (meteor.y - meteor.meteorImgHeight / 2) <= (playerRocket.y + playerRocket.realRocketImgHeight / 2) &&
-                ((playerRocket.y - playerRocket.rocketImgHeight / 2) <= meteor.y + meteor.meteorImgHeight / 2))
+
+        if (meteor.x < playerRocket.x + playerRocket.rocketImgWidth && playerRocket.x < meteor.x + meteor.meteorImgWidth)
         {
-            Framework.gameState = Framework.GameState.GAMEOVER;
+            if (meteor.y < playerRocket.y + playerRocket.rocketImgHeight && playerRocket.y < meteor.y + meteor.meteorImgHeight)
+            {
+                Framework.gameState = Framework.GameState.GAMEOVER;
+            }
         }
 
     }
