@@ -95,9 +95,6 @@ public class PlayerRocket {
      */
     public int rocketImgHeight;
 
-    public int realRocketImgWidth;
-
-    public int realRocketImgHeight;
 
     Audio rocketFire;
     
@@ -136,8 +133,6 @@ public class PlayerRocket {
             rocketImgWidth = rocketImg.getWidth();
             rocketImgHeight = rocketImg.getHeight();
 
-            realRocketImgWidth = rocketImgWidth - 60;
-            realRocketImgHeight = rocketImgHeight - 40;
             
             URL rocketLandedImgUrl = this.getClass().getResource("/resources/images/rocket_landed.png");
             rocketLandedImg = ImageIO.read(rocketLandedImgUrl);

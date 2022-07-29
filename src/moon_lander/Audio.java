@@ -15,12 +15,12 @@ public class Audio {
     public boolean isPlaying = true;
     private long clipTime;
 
-    public Audio(String pathname,boolean isLoop)
+    public Audio(String path, boolean isLoop)
     {
         try
         {
             clip = AudioSystem.getClip();
-            audioFile = new File(pathname);
+            audioFile = new File(path);
             audioInputStream = AudioSystem.getAudioInputStream(audioFile);
             clip.open(audioInputStream);
 
